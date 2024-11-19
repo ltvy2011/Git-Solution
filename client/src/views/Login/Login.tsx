@@ -1,11 +1,23 @@
 import React, { useEffect } from "react";
 
-const CLIENT_ID = "Ov23liimDk3y7uJVrNZV";
+// const CLIENT_ID = "Ov23liimDk3y7uJVrNZV";
 const apiUrl = "http://localhost:4000";
 
-function loginWithGithub() {
+async function loginWithGithub() {
+  let clientId;
+  await fetch(apiUrl + "/get-client-id?username=vix&password=vix", {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      clientId = data;
+    })
+    .catch((err) => console.log(err));
+
   window.location.assign(
-    "https://github.com/login/oauth/authorize?client_id=" + CLIENT_ID
+    "https://github.com/login/oauth/authorize?client_id=" + clientId
   );
 }
 

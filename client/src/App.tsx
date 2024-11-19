@@ -1,14 +1,15 @@
 import React from "react";
-import Login from "./views/Login/index.tsx";
+import router from "./router.tsx";
 
 import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import ajack from "./lib/AJACK/index.js";
 
 function App() {
+  ajack.get();
   return (
     <div className="App">
-      <header className="App-header">
-        <Login />
-      </header>
+      <RouterProvider router={router} />
     </div>
   );
 }
